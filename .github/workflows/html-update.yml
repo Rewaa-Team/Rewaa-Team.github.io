@@ -42,7 +42,7 @@ jobs:
           fi
 
           # Checkout repository and update HTML as in your existing code
-          FILE="apps/glucochart/index.html"
+          FILE="apps/rewaacashier/index.html"
           echo "Updating $FILE with APK URL: $APK_URL"
           sed -i "s|onclick=\"window.location.href='.*';\"|onclick=\"window.location.href='$APK_URL';\"|g" $FILE
           cat $FILE
