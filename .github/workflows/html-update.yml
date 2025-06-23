@@ -18,7 +18,6 @@ jobs:
         if: ${{ github.event.release.name == 'Cashier Release' }}
         run: echo "Release name matches! Running the rest of the job..."   
 
-    steps:
       # Step 1: Wait for a fixed delay (e.g., 3 minutes) after the release creation
       - name: Wait for APK Upload Delay
         run: |

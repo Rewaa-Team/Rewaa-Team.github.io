@@ -17,9 +17,7 @@ jobs:
       - name: Continue build if release name matches
         if: ${{ github.event.release.name == 'Pulse Release' }}
         run: echo "Release name matches! Running the rest of the job..."    
-  
-    steps:
-      # Step 1: Wait for a fixed delay (e.g., 3 minutes) after the release creation
+        
       - name: Wait for APK Upload Delay
         run: |
           echo "Waiting for 3 minutes to allow APK upload..."
