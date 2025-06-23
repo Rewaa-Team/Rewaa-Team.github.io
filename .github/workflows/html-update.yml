@@ -1,7 +1,8 @@
 name: Update HTML with APK Link After Asset Upload
 
 on:
-  release: {}
+  release:
+    types: [published]
 
 jobs:
   wait-for-asset:
