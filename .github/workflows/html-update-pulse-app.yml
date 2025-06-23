@@ -1,4 +1,4 @@
-name: Update HTML with APK Link After Asset Upload
+name: Update pulse app HTML with APK Link After Asset Upload
 
 on:
   release: {}
@@ -9,15 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check Release Name
-        if: ${{ github.event.release.name != 'Cashier Release' }}
+        if: ${{ github.event.release.name != 'Pulse Release' }}
         run: |
           echo "Release name does not match. Exiting build."
           exit 1
 
       - name: Continue build if release name matches
-        if: ${{ github.event.release.name == 'Cashier Release' }}
-        run: echo "Release name matches! Running the rest of the job..."   
-
+        if: ${{ github.event.release.name == 'Pulse Release' }}
+        run: echo "Release name matches! Running the rest of the job..."    
+  
     steps:
       # Step 1: Wait for a fixed delay (e.g., 3 minutes) after the release creation
       - name: Wait for APK Upload Delay
@@ -50,7 +50,7 @@ jobs:
           fi
 
           # Checkout repository and update HTML as in your existing code
-          FILE="index.html"
+          FILE="apps/pulse/index.html"
           echo "Updating $FILE with APK URL: $APK_URL"
           sed -i "s|onclick=\"window.location.href='.*';\"|onclick=\"window.location.href='$APK_URL';\"|g" $FILE
           cat $FILE
@@ -63,6 +63,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add index.html
+          git add apps/pulse/index.html
           git commit -m "Update APK link in index.html for release ${{ github.event.release.tag_name }}"
           git push "https://${PAT_TOKEN}@github.com/${{ github.repository }}.git" HEAD:main
