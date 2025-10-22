@@ -1,73 +1,194 @@
 <!doctype html>
-<div>
-<h2>Why testers see a code prompt</h2>
-<p class="muted">Public TestFlight links normally do <strong>not</strong> require a code. If a tester sees one, it's usually because the link token was lost before TestFlight received it.</p>
-<ul>
-<li>They opened the link in an in-app browser (Instagram, WhatsApp, Gmail). Those can strip the token.</li>
-<li>They copied the link text and opened TestFlight manually instead of opening the link in Safari.</li>
-<li>The public link was accidentally disabled or re-generated in App Store Connect (rare).</li>
-</ul>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TestFlight Help</title>
+    
+    <!-- Material Design CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    
+    <!-- IBM Plex Font -->
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+        
+        .header-space {
+            height: 60px;
+            background-color: #15888A;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .header-title {
+            color: white;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0;
+        }
+        
+        body {
+            margin: 0;
+            padding-top: 60px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            margin-top: 20px;
+        }
+        
+        .card {
+            margin-bottom: 20px;
+        }
+        
+        .muted {
+            color: #666;
+        }
+        
+        .note {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        pre {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 10px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+        
+        .btn {
+            margin-right: 10px;
+        }
+        
+        aside {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        
+        footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-space">
+        <h1 class="header-title">Rewaa App Installation Help</h1>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <div class="card-content">
+                <h2 class="card-title">Why testers see a code prompt</h2>
+                <p class="muted">Public TestFlight links normally do <strong>not</strong> require a code. If a tester sees one, it's usually because the link token was lost before TestFlight received it.</p>
+                <ul class="collection">
+                    <li class="collection-item">They opened the link in an in-app browser (Instagram, WhatsApp, Gmail). Those can strip the token.</li>
+                    <li class="collection-item">They copied the link text and opened TestFlight manually instead of opening the link in Safari.</li>
+                    <li class="collection-item">The public link was accidentally disabled or re-generated in App Store Connect (rare).</li>
+                </ul>
+            </div>
+        </div>
 
+        <div class="card">
+            <div class="card-content">
+                <h2 class="card-title">Quick instructions to send to testers</h2>
+                <ol class="collection">
+                    <li class="collection-item"><strong>Open this link in Safari on your iPhone/iPad:</strong>
+                        <pre id="join-link">https://testflight.apple.com/join/DuxES8Kr</pre>
+                    </li>
+                    <li class="collection-item">Tap <em>Start Testing</em>.</li>
+                    <li class="collection-item">If prompted, install the <strong>TestFlight app</strong> from the App Store first, then re-open the link.</li>
+                    <li class="collection-item">If the link opened in another app, long-press the link and choose <em>Open in Safari</em>.</li>
+                </ol>
+            </div>
+        </div>
 
-<h2>Quick instructions to send to testers</h2>
-<ol>
-<li><strong>Open this link in Safari on your iPhone/iPad:</strong>
-<pre id="join-link">https://testflight.apple.com/join/DuxES8Kr</pre>
-</li>
-<li>Tap <em>Start Testing</em>.</li>
-<li>If prompted, install the <strong>TestFlight app</strong> from the App Store first, then re-open the link.</li>
-<li>If the link opened in another app, long-press the link and choose <em>Open in Safari</em>.</li>
-</ol>
+        <div class="card">
+            <div class="card-content">
+                <div style="margin-top:12px">
+                    <button class="btn waves-effect waves-light teal" id="copyBtn">
+                        <i class="material-icons left">content_copy</i>Copy link
+                    </button>
+                    <button class="btn waves-effect waves-light teal lighten-2" id="openSafariBtn">
+                        <i class="material-icons left">open_in_new</i>Open in Safari
+                    </button>
+                </div>
+            </div>
+        </div>
 
+        <div class="card">
+            <div class="card-content">
+                <h2 class="card-title" style="margin-top:18px">If they still see "Enter Code"</h2>
+                <div class="note">
+                    <ul class="collection">
+                        <li class="collection-item">There is <strong>no manual code</strong> for public links — the token is inside the URL (the `join/xxxxx` part).</li>
+                        <li class="collection-item">Check App Store Connect → <strong>TestFlight → External Testing</strong> and ensure the public link is enabled.</li>
+                        <li class="collection-item">Confirm you haven't reached the tester limit (usually 10,000).</li>
+                        <li class="collection-item">If needed, re-copy the public link from App Store Connect and ask testers to use the fresh link.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-<div style="margin-top:12px" class="inline-flex">
-<button class="btn" id="copyBtn">Copy link</button>
-<button class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)" id="openSafariBtn">Open in Safari</button>
-</div>
+        <div class="card">
+            <div class="card-content">
+                <h2 class="card-title" style="margin-top:18px">Best practices for sharing</h2>
+                <ul class="collection">
+                    <li class="collection-item">When sharing on chat apps or social media, add this short note: <br><em>"Open this link in Safari — not inside other apps — to join TestFlight."</em></li>
+                    <li class="collection-item">Optionally shorten the link (e.g., bit.ly) but still tell testers to open the shortened URL in Safari.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
+    <div class="container">
+        <aside class="card">
+            <div class="card-content">
+                <h3 class="card-title" style="margin-top:0">Copy & troubleshooting</h3>
+                <p class="muted">Buttons below help testers copy the link quickly or attempt to open it via Safari (on desktop clicking "Open in Safari" will simply open the link in a new tab).</p>
+                <p style="margin-top:18px"><strong>Contact</strong><br><span class="muted">If problems persist, collect a screenshot of the prompt and the exact URL they opened and send it to the app owner.</span></p>
 
-<h2 style="margin-top:18px">If they still see "Enter Code"</h2>
-<div class="note">
-<ul>
-<li>There is <strong>no manual code</strong> for public links — the token is inside the URL (the `join/xxxxx` part).</li>
-<li>Check App Store Connect → <strong>TestFlight → External Testing</strong> and ensure the public link is enabled.</li>
-<li>Confirm you haven’t reached the tester limit (usually 10,000).</li>
-<li>If needed, re-copy the public link from App Store Connect and ask testers to use the fresh link.</li>
-</ul>
-</div>
-
-
-<h2 style="margin-top:18px">Best practices for sharing</h2>
-<ul>
-<li>When sharing on chat apps or social media, add this short note: <br><em>"Open this link in Safari — not inside other apps — to join TestFlight."</em></li>
-<li>Optionally shorten the link (e.g., bit.ly) but still tell testers to open the shortened URL in Safari.</li>
-</ul>
-</div>
-
-
-<aside>
-<h3 style="margin-top:0">Copy & troubleshooting</h3>
-<p class="muted">Buttons below help testers copy the link quickly or attempt to open it via Safari (on desktop clicking "Open in Safari" will simply open the link in a new tab).</p>
-<p style="margin-top:18px"><strong>Contact</strong><br><span class="muted">If problems persist, collect a screenshot of the prompt and the exact URL they opened and send it to the app owner.</span></p>
-
-
-<h4 style="margin-top:18px">Shareable message (one-liner)</h4>
-<pre>Open this link in Safari on your iPhone/iPad, then tap "Start Testing":
+                <h4 style="margin-top:18px">Shareable message (one-liner)</h4>
+                <pre>Open this link in Safari on your iPhone/iPad, then tap "Start Testing":
 https://testflight.apple.com/join/DuxES8Kr</pre>
+            </div>
+        </aside>
+    </div>
 
+    <footer class="page-footer" style="background-color: #15888A;">
+        <div class="container">
+            <div class="center-align">
+                <p class="white-text" style="margin: 0; padding: 20px 0;">
+                    All rights are reserved Rewaa Technology Company for Information Technology © 2025
+                </p>
+            </div>
+        </div>
+    </footer>
 
-</aside>
-</div>
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-
-<footer>
-<small class="muted">Created to help external testers who run into the "Enter Code" prompt when joining via a TestFlight public link.</small>
-</footer>
-</div>
-</div>
-
-
-<script>
+    <script>
 const linkText = document.getElementById('join-link').textContent.trim();
 document.getElementById('copyBtn').addEventListener('click', async () => {
 try {
