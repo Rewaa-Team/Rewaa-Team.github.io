@@ -1,0 +1,89 @@
+<!doctype html>
+<div>
+<h2>Why testers see a code prompt</h2>
+<p class="muted">Public TestFlight links normally do <strong>not</strong> require a code. If a tester sees one, it's usually because the link token was lost before TestFlight received it.</p>
+<ul>
+<li>They opened the link in an in-app browser (Instagram, WhatsApp, Gmail). Those can strip the token.</li>
+<li>They copied the link text and opened TestFlight manually instead of opening the link in Safari.</li>
+<li>The public link was accidentally disabled or re-generated in App Store Connect (rare).</li>
+</ul>
+
+
+<h2>Quick instructions to send to testers</h2>
+<ol>
+<li><strong>Open this link in Safari on your iPhone/iPad:</strong>
+<pre id="join-link">https://testflight.apple.com/join/DuxES8Kr</pre>
+</li>
+<li>Tap <em>Start Testing</em>.</li>
+<li>If prompted, install the <strong>TestFlight app</strong> from the App Store first, then re-open the link.</li>
+<li>If the link opened in another app, long-press the link and choose <em>Open in Safari</em>.</li>
+</ol>
+
+
+<div style="margin-top:12px" class="inline-flex">
+<button class="btn" id="copyBtn">Copy link</button>
+<button class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)" id="openSafariBtn">Open in Safari</button>
+</div>
+
+
+<h2 style="margin-top:18px">If they still see "Enter Code"</h2>
+<div class="note">
+<ul>
+<li>There is <strong>no manual code</strong> for public links — the token is inside the URL (the `join/xxxxx` part).</li>
+<li>Check App Store Connect → <strong>TestFlight → External Testing</strong> and ensure the public link is enabled.</li>
+<li>Confirm you haven’t reached the tester limit (usually 10,000).</li>
+<li>If needed, re-copy the public link from App Store Connect and ask testers to use the fresh link.</li>
+</ul>
+</div>
+
+
+<h2 style="margin-top:18px">Best practices for sharing</h2>
+<ul>
+<li>When sharing on chat apps or social media, add this short note: <br><em>"Open this link in Safari — not inside other apps — to join TestFlight."</em></li>
+<li>Optionally shorten the link (e.g., bit.ly) but still tell testers to open the shortened URL in Safari.</li>
+</ul>
+</div>
+
+
+<aside>
+<h3 style="margin-top:0">Copy & troubleshooting</h3>
+<p class="muted">Buttons below help testers copy the link quickly or attempt to open it via Safari (on desktop clicking "Open in Safari" will simply open the link in a new tab).</p>
+<p style="margin-top:18px"><strong>Contact</strong><br><span class="muted">If problems persist, collect a screenshot of the prompt and the exact URL they opened and send it to the app owner.</span></p>
+
+
+<h4 style="margin-top:18px">Shareable message (one-liner)</h4>
+<pre>Open this link in Safari on your iPhone/iPad, then tap "Start Testing":
+https://testflight.apple.com/join/DuxES8Kr</pre>
+
+
+</aside>
+</div>
+
+
+<footer>
+<small class="muted">Created to help external testers who run into the "Enter Code" prompt when joining via a TestFlight public link.</small>
+</footer>
+</div>
+</div>
+
+
+<script>
+const linkText = document.getElementById('join-link').textContent.trim();
+document.getElementById('copyBtn').addEventListener('click', async () => {
+try {
+await navigator.clipboard.writeText(linkText);
+alert('Link copied to clipboard');
+} catch (e) {
+prompt('Copy the link below:', linkText);
+}
+});
+
+
+document.getElementById('openSafariBtn').addEventListener('click', () => {
+// On desktop this will open in a new tab. On iOS, users should long-press the original shared link
+// and choose "Open in Safari" from their app. We open a new window as a convenience.
+window.open(linkText, '_blank');
+});
+</script>
+</body>
+</html>
