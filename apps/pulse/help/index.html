@@ -28,27 +28,71 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
+            padding: 0 15px;
+            box-sizing: border-box;
         }
         
         .header-title {
             color: white;
             font-family: 'IBM Plex Sans', sans-serif;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 500;
             margin: 0;
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .language-toggle {
             color: white;
             background: rgba(255,255,255,0.2);
             border: 1px solid rgba(255,255,255,0.3);
-            padding: 5px 10px;
-            border-radius: 20px;
+            padding: 4px 8px;
+            border-radius: 15px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
             transition: all 0.3s ease;
+            flex-shrink: 0;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .header-space {
+                padding: 0 10px;
+            }
+            
+            .header-title {
+                font-size: 16px;
+                max-width: calc(100vw - 80px);
+            }
+            
+            .language-toggle {
+                font-size: 10px;
+                padding: 3px 6px;
+                min-width: 45px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-space {
+                padding: 0 8px;
+            }
+            
+            .header-title {
+                font-size: 14px;
+                max-width: calc(100vw - 70px);
+            }
+            
+            .language-toggle {
+                font-size: 9px;
+                padding: 2px 5px;
+                min-width: 40px;
+                border-radius: 12px;
+            }
         }
         
         .language-toggle:hover {
