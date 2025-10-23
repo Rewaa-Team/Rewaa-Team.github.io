@@ -163,6 +163,19 @@
             padding: 20px 0;
             text-align: center;
         }
+        
+        .video-container {
+            width: 100%;
+            max-width: 350px; /* Better for vertical videos */
+            margin: 0 auto;
+        }
+        
+        .video-player {
+            width: 100%;
+            height: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
@@ -250,6 +263,21 @@ https://testflight.apple.com/join/DuxES8Kr">Open this link in Safari on your iPh
 https://testflight.apple.com/join/DuxES8Kr</pre>
             </div>
         </aside>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-content center-align">
+                <h2 class="card-title" data-en="Video Help" data-ar="مساعدة الفيديو">Video Help</h2>
+                <div class="video-container">
+                    <video class="video-player" controls preload="metadata" playsinline>
+                        <source src="video.mov" type="video/quicktime">
+                        <source src="video.mov" type="video/mp4">
+                        <p data-en="Your browser does not support the video tag. Please try a different browser or contact support." data-ar="متصفحك لا يدعم عنصر الفيديو. يرجى تجربة متصفح مختلف أو الاتصال بالدعم.">Your browser does not support the video tag. Please try a different browser or contact support.</p>
+                    </video>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer class="page-footer" style="background-color: #15888A;">
