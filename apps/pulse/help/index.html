@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TestFlight Help</title>
+    <title>مساعدة TestFlight</title>
     
     <!-- Material Design CSS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -180,8 +180,8 @@
 </head>
 <body>
     <div class="header-space">
-        <h1 class="header-title" data-en="Rewaa App Installation Help" data-ar="مساعدة تثبيت تطبيق ريوا">Rewaa App Installation Help</h1>
-        <button class="language-toggle" id="langToggle" onclick="toggleLanguage()">عربي</button>
+        <h1 class="header-title" data-en="Rewaa App Installation Help" data-ar="مساعدة تثبيت تطبيق ريوا">مساعدة تثبيت تطبيق ريوا</h1>
+        <button class="language-toggle" id="langToggle" onclick="toggleLanguage()">English</button>
     </div>
     
     <div class="container">
@@ -295,7 +295,7 @@ https://testflight.apple.com/join/DuxES8Kr</pre>
 
     <script>
 // Language switching functionality
-let currentLanguage = 'en';
+let currentLanguage = 'ar'; // Changed default to Arabic
 
 function toggleLanguage() {
     currentLanguage = currentLanguage === 'en' ? 'ar' : 'en';
@@ -342,11 +342,29 @@ function toggleLanguage() {
     localStorage.setItem('preferredLanguage', currentLanguage);
 }
 
-// Load saved language preference
+// Initialize page in Arabic by default
 document.addEventListener('DOMContentLoaded', function() {
+    // Set initial Arabic state
+    document.documentElement.setAttribute('lang', 'ar');
+    document.body.className = 'rtl';
+    
+    // Update all elements to Arabic
+    const elements = document.querySelectorAll('[data-en][data-ar]');
+    elements.forEach(element => {
+        const arabicText = element.getAttribute('data-ar');
+        if (arabicText) {
+            element.innerHTML = arabicText;
+        }
+    });
+    
+    // Set toggle button to show "English"
+    const toggleBtn = document.getElementById('langToggle');
+    toggleBtn.textContent = 'English';
+    
+    // Check for saved preference (if user previously chose English)
     const savedLanguage = localStorage.getItem('preferredLanguage');
-    if (savedLanguage && savedLanguage !== 'en') {
-        toggleLanguage();
+    if (savedLanguage === 'en') {
+        toggleLanguage(); // Switch to English if previously saved
     }
 });
 
