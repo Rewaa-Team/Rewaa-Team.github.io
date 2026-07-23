@@ -113,6 +113,21 @@
             height: auto;
             border-radius: 12px; /* Rounded corners for the image */
         }
+
+        /* QR Code styling */
+        .qr-container {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .qr-container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            background: white;
+            padding: 8px;
+        }
     </style>
 </head>
 <body>
@@ -130,6 +145,11 @@
         <button id="apk-link" class="download-button" onclick="window.location.href='https://github.com/Rewaa-Team/Rewaa-Team.github.io/releases/download/v1.0-mdm/mdm-app-release.apk';">
             Download
         </button>
+
+        <!-- QR Code -->
+        <div class="qr-container">
+            <img src="mdm-qr.png" alt="Download QR Code">
+        </div>
     </div>
 </body>
 
